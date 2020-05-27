@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet {
 		String infoJSON;
 		UserDAO udi = new UserDAOImpl();
 		try {
-			infoJSON = mapper.writeValueAsString(udi.getUsers());
+			infoJSON = mapper.writeValueAsString(udi.getUserList());
 			response.setContentType("application/json");
 			pw.print(infoJSON);
 		}catch(JsonProcessingException | SQLException e ) {

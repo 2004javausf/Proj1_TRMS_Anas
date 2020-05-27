@@ -7,10 +7,8 @@ import com.trms.beans.User;
 
 public interface UserDAO {
 
-	public List<User> getUsers() throws SQLException;
-
-	public void createUser2(String username, String password, String firstName, String lastName, String pos) throws SQLException;
-
 	public void createUser(User user) throws SQLException;
+
+	public List<User> getUserList() throws SQLException;
 
 }

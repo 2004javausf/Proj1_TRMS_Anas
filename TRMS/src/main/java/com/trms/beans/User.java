@@ -13,6 +13,7 @@ public class User {
 	// Constructors
 	public User() {
 		super();
+		username = "";
 		// TODO Auto-generated constructor stub
 	}
 

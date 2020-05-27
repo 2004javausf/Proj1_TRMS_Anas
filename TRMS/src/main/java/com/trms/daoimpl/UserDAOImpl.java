@@ -37,37 +37,16 @@ public class UserDAOImpl implements UserDAO {
 		}	
 	}
 	
-	// Get User List
-	@Override
-	public void createUser2(String username, String password, String firstName, String lastName, String pos) {
-		try {
-			connection = cc.getConnection();
-			String sql ="INSERT INTO USERS VALUES(USERSEQ.NEXTVAL,?,?,?,?,?,?,?,1000)"; 
-			stmt = connection.prepareStatement(sql);
-			stmt.setString(1, username);
-			stmt.setString(2, password);
-			stmt.setString(3, firstName);
-			stmt.setString(4, lastName);
-			stmt.setString(5, pos);
-			stmt.execute();	
-		}catch(SQLException e) {
-			
-		}finally {
-			closeResources();
-		}		
-	}
-	
-	
 	// Get All Users
 	@Override
-	public List<User> getUsers() {
+	public List<User> getUserList() {
 		List<User> users = new ArrayList<User>();
 		try {
 			connection = cc.getConnection();
 			String sql = "SELECT * FROM USERS";
 			stmt = connection.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
-			User user = null;
+			User user = new User();
 			while(rs.next()) {
 				user = new User(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDouble(7));				
 				users.add(user);
@@ -96,7 +75,7 @@ public class UserDAOImpl implements UserDAO {
 			if (connection != null)
 				connection.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close connection!");
+			System.out.println("Unable to close the connection!");
 			e.printStackTrace();
 		}
 	}

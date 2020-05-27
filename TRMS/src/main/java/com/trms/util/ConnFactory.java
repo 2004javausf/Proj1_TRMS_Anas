@@ -36,8 +36,12 @@ public class ConnFactory {
 			
 			Connection conn = null;
 			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
 				conn = DriverManager.getConnection(url,user,password);
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
