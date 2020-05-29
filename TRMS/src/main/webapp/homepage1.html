@@ -3,34 +3,22 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
 	<div class="wrap1">
 		<div class="header-top-nav">
-			<ul>
-				<li><a href="reimbursement.html">Apply for Reimbursement</a></li>
-				<li><a href="viewMyReimburse.html">View Reimbursements</a></li>
-				<li><a href= "ProfileServlet">Profile</a></li>
-				<li><a href="LogoutServlet">Logout</a></li>
-			</ul>
+
 		</div>
 		<br>
 		<hr>
 		<h2>Welcome!</h2>
 		</div>
 		<div class="container">
-			<div class="form-group">
-				<div class="form-control">
-					<div><h4 id="eID"></h4></div>
-					<div><h4 id="fname"></h4></div>
-					<div><h4 id="lname"></h4></div>
-					<div><h4 id="uname"></h4></div>
-					<div><h4 id="upass"></h4></div>
-					<div><h4 id="email"></h4></div>
-					<div><h4 id="title"></h4></div>
-					<div><h4 id="dept"></h4></div>
-				</div>
-			</div>
+				<button class = "btn form" type="button" onclick="document.location = 'form.html'">Apply New Reimbursement</button>
+				<button class = "btn myReimburse" type="button" onclick="document.location = 'myReimbursements.html'">View Existing Reimbursements</button>
+				<button class = "btn profile" type="button" onclick="document.location = 'ProfileServlet'">Profile</button>
+				<button class = "btn logout" type="button" onclick="document.location = 'logout'">Logout</button>
 		</div>
 	<script type="text/javascript" src="login.js"></script>
 </body>

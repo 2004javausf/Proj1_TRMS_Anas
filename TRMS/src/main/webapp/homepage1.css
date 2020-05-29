@@ -1,0 +1,55 @@
+
+/* style the submit button */
+.btn {
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  padding: 14px 28px;
+  font-size: 40px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn:hover {background: #eee;}
+
+
+/* Blue */
+.form {
+    color: dodgerblue;
+}
+
+.form:hover {
+    background: #2196F3;
+    color: white;
+}
+
+/* Orange */
+.myReimburse {
+    color: orange;
+}
+
+.myReimburse:hover {
+    background: #ff9800;
+    color: white;
+}
+
+/* Red */
+.profile {
+    color: red;
+}
+
+.profile:hover {
+    background: #f44336;
+    color: white;
+}
+
+/* Gray */
+.logout {
+    color: black;
+}
+
+.logout:hover {
+    background-color: #4CAF50;
+    color: white;
+}

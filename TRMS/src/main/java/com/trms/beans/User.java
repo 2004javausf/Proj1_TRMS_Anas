@@ -14,7 +14,7 @@ public class User {
 	public User() {
 		super();
 		username = "";
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public User(String username, String password, String firstName, String lastName, String position,

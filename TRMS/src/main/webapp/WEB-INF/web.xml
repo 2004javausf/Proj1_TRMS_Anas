@@ -30,6 +30,7 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
+    <url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -40,5 +41,25 @@
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EventServlet</display-name>
+    <servlet-name>EventServlet</servlet-name>
+    <servlet-class>com.trms.servlet.EventServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EventServlet</servlet-name>
+    <url-pattern>/event</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GradeServlet</display-name>
+    <servlet-name>GradeServlet</servlet-name>
+    <servlet-class>com.trms.servlet.GradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GradeServlet</servlet-name>
+    <url-pattern>/grade</url-pattern>
   </servlet-mapping>
 </web-app>

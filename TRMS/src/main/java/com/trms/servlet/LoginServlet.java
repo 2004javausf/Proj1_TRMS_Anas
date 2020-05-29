@@ -11,12 +11,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.trms.beans.User;
 import com.trms.daoimpl.UserDAOImpl;
 
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("in doGet of LoginServlet");
+		ObjectMapper mapper = new ObjectMapper();
+		UserDAOImpl userdi = new UserDAOImpl();
+	//	String uName = mapper.readValue(request.getParameter("eid"),String.class);
+		HttpSession session = request.getSession();
+		PrintWriter pw = response.getWriter();
+		//List<User> uList=new ArrayList<User>();
+		User user = new User();
+		String etJSON;
+		
+		try {	
+			user = (User) session.getAttribute("user");
+			
+			etJSON=mapper.writeValueAsString(user);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			pw.print(etJSON);
+			
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		} 
+		
+		pw.flush();
+	}
 
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) 
 			throws ServletException,IOException {
