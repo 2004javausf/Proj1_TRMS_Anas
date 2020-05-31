@@ -41,16 +41,17 @@
     <p id='msg'></p>
     </div>
     <div class = "approve">
-		<form action="approve"  method="POST" id="approveRim">
+    	<form action="approveRim"  method="POST" id="approveRim">
 		<p class="order">Approve a request by submitting the form ID below:</p>
-		<input type="text" name="userName" placeholder="Form ID" required>
+		<input type="text" name="approval" id="approval" placeholder="Form ID" required>
 		<input type="submit" value="Submit" id="trmsApprove">
 		</form>
 	</div>
 	    <div class = "reject">
-		<form action="reject"  method="POST" id="rejectRim">
-		<p class="order">Deny a request by submitting the form ID below:</p>
-		<input type="text" name="rejection" placeholder="Form ID" required>
+		<form action="deny"  method="POST" id="rejectRim">
+		<p class="order">Deny a request by submitting the form ID below, together with a reason:</p>
+		<input type="text" name="rejection" id="rejection" placeholder="Form ID" required>
+		<input type="text" name="reasonReject" id="reasonReject" placeholder="Reason" required>
 		<input type="submit" value="Submit" id="trmsReject">
 		</form>
 	</div>

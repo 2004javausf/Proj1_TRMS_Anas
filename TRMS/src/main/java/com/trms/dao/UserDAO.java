@@ -15,4 +15,6 @@ public interface UserDAO {
 
 	public List<Form> getAllFormList() throws SQLException;
 
+	List<Form> getReviewFormList(int formLvl) throws SQLException;
+
 }

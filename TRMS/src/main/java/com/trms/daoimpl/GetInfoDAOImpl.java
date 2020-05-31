@@ -94,10 +94,10 @@ public class GetInfoDAOImpl {
 	}
 	
 	//insert reimbursement
-	public void insertRIM(Form rim) throws SQLException {
+	public void insertRim(Form rim) throws SQLException {
 			Connection conn = cf.getConnection();
 			
-			String sql = "{ call NEW_REIMBURSE(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "{ call NEW_REIMBURSE(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			CallableStatement call = conn.prepareCall(sql);
 			
@@ -106,77 +106,57 @@ public class GetInfoDAOImpl {
 			call.setString(3, rim.getlName());
 			call.setDouble(4, rim.getCost());
 			call.setDouble(5, rim.getReimbursement());
-			call.setDate(6, rim.getEventDate());
-			call.setString(7, rim.getEventLocation());
-			call.setString(8, rim.getDesc());
-			call.setString(9, rim.getgFormat());
-			call.setString(10, rim.getPassingGrade());
-			call.setString(11, rim.getJustification());
-			call.setInt(12, rim.getDaysMissed());
+			call.setString(6, rim.geteType());
+			call.setDate(7, rim.getEventDate());
+			call.setString(8, rim.getEventLocation());
+			call.setString(9, rim.getDesc());
+			call.setInt(10, rim.getFormLvl());
+			call.setString(11, rim.getgFormat());
+			call.setString(12, rim.getPassingGrade());
+			call.setString(13, rim.getJustification());
+			call.setInt(14, rim.getDaysMissed());
 			
 			call.execute();
 		}
 	
+	//Approve reimbursement
+	public void approveRim(int formID) throws SQLException {
+			Connection conn = cf.getConnection();
+				
+			String sql = "{ call APPROVEREIMBURSE(?)";
+				
+			CallableStatement call = conn.prepareCall(sql);
+			call.setInt(1, formID);
+
+			call.execute();
+	}
 	
 	
-//	// Retrieve all reimbursements to be reviewed by logged user
-//	public List<ViewRim> getViewAllRim() throws SQLException{
-//		ViewRim vr = null;
-//		
-//		List<ViewRim> vrList = new ArrayList<ViewRim>();
-//		Connection conn = banana.getConnection();
-//		Statement stmt=conn.createStatement();
-//		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
-//				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
-//				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
-//				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
-//				"JOIN EMPLOYEE " + 
-//				"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
-//				"JOIN EVENT " + 
-//				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
-//				"JOIN EVENT_TYPE " + 
-//				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " + 
-//				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
-//		while(rs.next()) {
-//			System.out.println(rs.getDate(4));			
-//			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
-//			vrList.add(vr);
-//			System.out.println(vr);
-//		}
-//		
-//		return vrList;
-//		
-//	}
-//	
-//	
-//	// Retrieve all of the logged user's reimbursements
-//	public List<ViewRim> getMyRims(long empID) throws SQLException{
-//		ViewRim vr = null;
-//	
-//		List<ViewRim> vrList = new ArrayList<ViewRim>();
-//		Connection conn = banana.getConnection();
-//		Statement stmt=conn.createStatement();
-//		ResultSet rs=stmt.executeQuery("SELECT EMPLOYEE.EMPLOYEE_FIRSTNAME||' '||EMPLOYEE.EMPLOYEE_LASTNAME,REIMBURSEMENT.REIMBURSEMENT_COST, " + 
-//				"UPPER(EVENT_TYPE.EVENT_TYPE_NAME),EVENT.EVENT_DATE,EVENT.EVENT_LOCATION,EVENT.EVENT_DESCRIPTION,EVENT.EVENT_GRADE, " + 
-//				"REIMBURSEMENT.REIMBURSEMENT_JUSTIFICATION,REIMBURSEMENT.REIMBURSEMENT_DAYS_MISSED, " + 
-//				"REIMBURSEMENT.REIMBURSEMENT_STATUS,REIMBURSEMENT.REIMBURSEMENT_STATUS_BY FROM REIMBURSEMENT " + 
-//				"JOIN EMPLOYEE " + 
-//				"ON REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID=EMPLOYEE.EMPLOYEE_ID " + 
-//				"JOIN EVENT " + 
-//				"ON REIMBURSEMENT.REIMBURSEMENT_EVENT=EVENT.EVENT_ID " +
-//				"JOIN EVENT_TYPE " + 
-//				"ON EVENT.EVENT_TYPE=EVENT_TYPE.EVENT_TYPE_ID " +
-//				"WHERE REIMBURSEMENT.REIMBURSEMENT_EMPLOYEE_ID= "+empID +
-//				"ORDER BY REIMBURSEMENT.REIMBURSEMENT_ID");
-//		while(rs.next()) {
-//			System.out.println(rs.getDate(4));			
-//			vr=new ViewRim(rs.getString(1),rs.getDouble(2),rs.getString(3),rs.getDate(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getInt(9),rs.getString(10),rs.getString(11));
-//			vrList.add(vr);
-//			System.out.println(vr);
-//		}
-//		
-//		return vrList;	
-//	}
+	//Reject reimbursement
+	public void rejectRim(int formID, String reason) throws SQLException {
+			Connection conn = cf.getConnection();
+				
+			String sql = "{ call REJECTREIMBURSE(?,?)";
+				
+			CallableStatement call = conn.prepareCall(sql);
+			call.setInt(1, formID);
+			call.setString(2, reason);
+
+			call.execute();
+	}
 	
+	//Reject reimbursement
+	public void insertGrade(int formID, String grade) throws SQLException {
+				Connection conn = cf.getConnection();
+					
+				String sql = "{ call INSERTGRADE(?,?)";
+					
+				CallableStatement call = conn.prepareCall(sql);
+				call.setInt(1, formID);
+				call.setString(2, grade);
+
+				call.execute();
+		}
+		
 	
 }

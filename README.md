@@ -4,7 +4,7 @@ reimbursement applications and management within a company.
 
 ## Installation
 
-Use the default package manager to download the TRMS files from the repository.
+Enter the git command below to download and clone the TRMS files from the repository.
 No installation is needed to run the program.
 
 ```bash

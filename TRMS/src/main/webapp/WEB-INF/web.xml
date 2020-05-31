@@ -92,4 +92,34 @@
     <servlet-name>MyRimServlet</servlet-name>
     <url-pattern>/myreimburse</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ApprRimServlet</display-name>
+    <servlet-name>ApprRimServlet</servlet-name>
+    <servlet-class>com.trms.servlet.ApprRimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ApprRimServlet</servlet-name>
+    <url-pattern>/approveRim</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DenyRimServlet</display-name>
+    <servlet-name>DenyRimServlet</servlet-name>
+    <servlet-class>com.trms.servlet.DenyRimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DenyRimServlet</servlet-name>
+    <url-pattern>/deny</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FGradeServlet</display-name>
+    <servlet-name>FGradeServlet</servlet-name>
+    <servlet-class>com.trms.servlet.FGradeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FGradeServlet</servlet-name>
+    <url-pattern>/entergrade</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -16,6 +16,9 @@
 	th {
 		font-weight:bold;
 	}
+	.order{
+		font-weight: bold;
+	}
 	#title {
 		font-family: Cambria, Georgia;
 		font-weight: bold;
@@ -36,6 +39,14 @@
 	<p id='showData'></p>
     
     <p id='msg'></p>
+    <div class = "finalGrade">
+		<form action="entergrade"  method="POST" id="insertGrade">
+		<p class="order">Enter your received grade for a past event by filling it together with the corresponding form ID below:</p>
+		<input type="text" name="formId" id="formId" placeholder="Form ID" required>
+		<input type="text" name="receivedGrade" id="receivedGrade" placeholder="Grade Received" required>
+		<input type="submit" value="Submit" id="trmsfinalGrade">
+		</form>
+	</div>
 	<script type="text/javascript" src="myreimburse.js"></script>
 </body>
 </html>

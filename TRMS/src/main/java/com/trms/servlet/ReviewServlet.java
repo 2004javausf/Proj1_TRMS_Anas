@@ -24,11 +24,12 @@ public class ReviewServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		PrintWriter pw = response.getWriter();
 		UserDAOImpl rdi = new UserDAOImpl();
-//		Integer id = mapper.readValue(request.getParameter("userid"),Integer.class);
+		Integer formLvl = mapper.readValue(request.getParameter("formLvl"),Integer.class);
 		String etJSON;
 		
 		try {
-			etJSON = mapper.writeValueAsString(rdi.getAllFormList());
+			
+			etJSON = mapper.writeValueAsString(rdi.getReviewFormList(formLvl));
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			pw.print(etJSON);

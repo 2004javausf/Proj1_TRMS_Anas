@@ -54,11 +54,9 @@ public class UserDAOImpl implements UserDAO {
 			connection = cc.getConnection();
 			Statement state = connection.createStatement();			
 			ResultSet rs = state.executeQuery("SELECT * FROM RFORMS WHERE USER_ID = " + userID);
-			//ResultSet rs = state.executeQuery("SELECT * FROM RFORMS");
 			Form form = null;
 			
 			while(rs.next()) {
-				System.out.println("in while loop");
 				form = new Form(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6),rs.getString(7), rs.getDate(8),
 						rs.getString(9),rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), 
 						rs.getInt(16), rs.getString(17));
@@ -75,7 +73,7 @@ public class UserDAOImpl implements UserDAO {
 		return forms;
 	}
 	
-	// Get logged user's reimbursements
+	// Get all reimbursements
 	@Override
 	public List<Form> getAllFormList() {
 		List<Form> forms = new ArrayList<Form>();
@@ -87,7 +85,6 @@ public class UserDAOImpl implements UserDAO {
 			Form form = null;
 			
 			while(rs.next()) {
-				System.out.println("in while loop");
 				form = new Form(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6),rs.getString(7), rs.getDate(8),
 						rs.getString(9),rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), 
 						rs.getInt(16), rs.getString(17));
@@ -103,6 +100,34 @@ public class UserDAOImpl implements UserDAO {
 		System.out.println(forms);
 		return forms;
 	}
+	
+	// Get all reimbursements
+		@Override
+		public List<Form> getReviewFormList(int formLvl) {
+			List<Form> forms = new ArrayList<Form>();
+			System.out.println("in getAllFormList()");
+			try {
+				connection = cc.getConnection();
+				Statement state = connection.createStatement();			
+				ResultSet rs = state.executeQuery("SELECT * FROM RFORMS WHERE FORM_LVL =" + formLvl);
+				Form form = null;
+				
+				while(rs.next()) {
+					form = new Form(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getDouble(5), rs.getDouble(6),rs.getString(7), rs.getDate(8),
+							rs.getString(9),rs.getString(10), rs.getInt(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), 
+							rs.getInt(16), rs.getString(17));
+					forms.add(form);
+				}
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				closeResources();
+			}
+			
+			System.out.println(forms);
+			return forms;
+		}
 	
 
 	// Close Resources

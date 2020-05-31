@@ -1,8 +1,30 @@
 var er;
+var formLvl;
+var title;
+var formId;
+var reject;
+var reason;
 
 window.onload=function(){
-    console.log("in load");
+    console.log("in load review");
+    
+    title = localStorage.getItem("title");
+    
+    if (title == "DS"){
+    	formLvl = 1;
+    } else if (title == "DH"){
+    	formLvl = 2;
+    } else if (title == "BC"){
+    	formLvl = 3;
+    }else if (title == "CEO"){
+    	formLvl = 4;
+    } else {
+    	formLvl = 0;
+    }
+    
     this.getER();
+    document.getElementById("trmsApprove").addEventListener("click",postApprove,false);
+    document.getElementById("trmsReject").addEventListener("click",postReject,false);
 
 }
 
@@ -18,7 +40,7 @@ function getER(){
             loadER(er);
         }
     }
-    xhr.open("GET","http://localhost:8080/TRMS/review",true);
+    xhr.open("GET","http://localhost:8080/TRMS/review?formLvl=" + formLvl,true);
     xhr.send();
 }
 
@@ -68,3 +90,39 @@ function loadER(er){
         divShowData.innerHTML = "";
         divShowData.appendChild(table);
 }
+
+
+function postApprove(){
+    console.log("in postApprove");
+    formId = document.getElementById('approval');
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        console.log("in ORSC"+xhr.readyState);
+        if(xhr.readyState==4 && xhr.status==200){
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.open("POST","http://localhost:8080/TRMS/approveRim?formId=" + formId,true);
+    var payload=jsonBuilder()
+    xhr.send(payload);
+}
+
+
+function postReject(){
+    console.log("in postForm");
+    reject = document.getElementById('rejection');
+    reason = document.getElementById('reasonReject');
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        console.log("in ORSC"+xhr.readyState);
+        if(xhr.readyState==4 && xhr.status==200){
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.open("POST","http://localhost:8080/TRMS/deny",true);
+    var payload=jsonBuilder()
+    xhr.send(payload);
+}
+

@@ -4,17 +4,13 @@ var localStorage;
 window.onload=function(){
     console.log("in load");
     
-    this.getLogin();   
-    //document.getElementById("trmsLogin").addEventListener("click",getLogin,false);  
+    this.getLogin();    
 }
 
 
 function getLogin(){
     console.log("in getLogin");
-    
-//    let uName=document.getElementById("username").value;
-//    let uPassword=document.getElementById("password").value;
-    
+        
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);

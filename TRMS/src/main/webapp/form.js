@@ -4,20 +4,33 @@ var fName;
 var lName;
 var userID;
 var eID;
+var title;
+var formLvl;
 
 window.onload=function(){
     console.log("in load");
     fName=localStorage.getItem("fName");
     lName=localStorage.getItem("lName");
     userID=localStorage.getItem("userID");
+    title = localStorage.getItem("title");
     console.log(userID);
-    
-//    userID=localStorage.getItem("userID");  
-//    document.getElementById("userID").value = userID;
+  
+    if (title == "DS"){
+    	formLvl = 2;
+    } else if (title == "DH"){
+    	formLvl = 3;
+    } else if (title == "BC"){
+    	formLvl = 4;
+    }else if (title == "CEO"){
+    	formLvl = 5;
+    } else {
+    	formLvl = 1;
+    }
     
     document.getElementById("userID").value = userID;
     document.getElementById("fName").value = fName;
     document.getElementById("lName").value = lName;
+    document.getElementById("formLvl").value = formLvl;
     
     this.getET();
     this.getGF();
@@ -32,10 +45,6 @@ function calculateReimburse(){
     console.log(cost);
     var sel = document.getElementById("eType");
     if(sel.value != 0){
-//        var percent = et[(sel.value)-1].etPercent;
-//        console.log(percent);
-//        var pr = ((cost*percent)/100);
-//        console.log(pr);
     	
     	if(sel.value == "University Course"){
     		var pr = (cost*0.8);

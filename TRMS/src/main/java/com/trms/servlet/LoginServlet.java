@@ -24,11 +24,8 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("in doGet of LoginServlet");
 		ObjectMapper mapper = new ObjectMapper();
-		UserDAOImpl userdi = new UserDAOImpl();
-	//	String uName = mapper.readValue(request.getParameter("eid"),String.class);
 		HttpSession session = request.getSession();
 		PrintWriter pw = response.getWriter();
-		//List<User> uList=new ArrayList<User>();
 		User user = new User();
 		String etJSON;
 		
@@ -74,8 +71,6 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		System.out.println(user);
-		String name = user.getFirstName() + " " + user.getLastName();
-		
 		if(validUser==true) {
 			HttpSession session=request.getSession();
 			session.setAttribute("user",user);
