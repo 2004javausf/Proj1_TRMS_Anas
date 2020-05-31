@@ -1,5 +1,6 @@
 package com.trms.daoimpl;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.trms.beans.Event;
+import com.trms.beans.Form;
 import com.trms.beans.GradeFormat;
 import com.trms.beans.User;
 import com.trms.util.ConnFactory;
@@ -28,7 +30,7 @@ public class GetInfoDAOImpl {
 		while(rs.next()) {
 			tmpList.add(new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6)));
 		}
-	
+		
 		return tmpList;
 	}
 	
@@ -64,6 +66,58 @@ public class GetInfoDAOImpl {
 		return gfList;
 		}
 
+	
+	// Insert new reimbursement into database
+	public void insertReimburse(Form rim) throws SQLException {
+		Connection conn = cf.getConnection();
+		
+		System.out.println("in insertReimburse()");
+		String sql = "INSERT INTO RFORMS VALUES (FORMS_ID_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,1,?,?,'TBD',?,?,'Pending')";
+		PreparedStatement ps = conn.prepareStatement(sql);
+
+		ps.setInt(1, rim.getUserID());
+		ps.setString(2, rim.getfName());
+		ps.setString(3, rim.getlName());
+		ps.setDouble(4, rim.getCost());
+		ps.setDouble(5, rim.getReimbursement());
+		ps.setString(6, rim.geteType());
+		ps.setDate(7, rim.getEventDate());
+		ps.setString(8, rim.getEventLocation());
+		ps.setString(9, rim.getDesc());
+		//ps.setInt(8, rim.getFormLvl());
+		ps.setString(10, rim.getgFormat());
+		ps.setString(11, rim.getPassingGrade());
+		ps.setString(12, rim.getJustification());
+		ps.setInt(13, rim.getDaysMissed());
+		
+		ps.executeUpdate();	
+	}
+	
+	//insert reimbursement
+	public void insertRIM(Form rim) throws SQLException {
+			Connection conn = cf.getConnection();
+			
+			String sql = "{ call NEW_REIMBURSE(?,?,?,?,?,?,?,?,?,?,?,?)";
+			
+			CallableStatement call = conn.prepareCall(sql);
+			
+			call.setInt(1, rim.getUserID());
+			call.setString(2, rim.getfName());
+			call.setString(3, rim.getlName());
+			call.setDouble(4, rim.getCost());
+			call.setDouble(5, rim.getReimbursement());
+			call.setDate(6, rim.getEventDate());
+			call.setString(7, rim.getEventLocation());
+			call.setString(8, rim.getDesc());
+			call.setString(9, rim.getgFormat());
+			call.setString(10, rim.getPassingGrade());
+			call.setString(11, rim.getJustification());
+			call.setInt(12, rim.getDaysMissed());
+			
+			call.execute();
+		}
+	
+	
 	
 //	// Retrieve all reimbursements to be reviewed by logged user
 //	public List<ViewRim> getViewAllRim() throws SQLException{

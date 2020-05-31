@@ -35,9 +35,10 @@ public class LoginServlet extends HttpServlet {
 		try {	
 			user = (User) session.getAttribute("user");
 			
-			etJSON=mapper.writeValueAsString(user);
+			etJSON = mapper.writeValueAsString(user);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
+			System.out.println(etJSON);
 			pw.print(etJSON);
 			
 		} catch (JsonProcessingException e) {
@@ -77,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(validUser==true) {
 			HttpSession session=request.getSession();
-			session.setAttribute("name",name);
+			session.setAttribute("user",user);
 			request.getRequestDispatcher("homepage1.html").include(request, response);
 		}else {
 			pw.print("Sorry, the username or password is incorrect");

@@ -1,20 +1,22 @@
 package com.trms.beans;
 
-public class User {
+import java.io.Serializable;
 
-	String username;
-	String password;
-	String firstName;
-	String lastName;
-	String position;
-	double accBalance;
+public class User implements Serializable{
+	private static final long serialVersionUID = -7011494003480798587L;
+	
+	private int userID;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String position;
+	private double accBalance;
 	
 	
 	// Constructors
 	public User() {
 		super();
-		username = "";
-		
 	}
 
 	public User(String username, String password, String firstName, String lastName, String position,
@@ -27,7 +29,18 @@ public class User {
 		this.position = position;
 		this.accBalance = accBalance;
 	}
-
+	
+	public User(int userID, String username, String password, String firstName, String lastName, String position,
+			double accBalance) {
+		super();
+		this.userID = userID;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+		this.accBalance = accBalance;
+	}
 
 	// Setter & Getter Methods
 	public String getUsername() {
@@ -89,11 +102,18 @@ public class User {
 		this.accBalance = accBalance;
 	}
 
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", position=" + position + ", accBalance=" + accBalance + "]";
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", position=" + position + ", accBalance=" + accBalance + "]";
 	}
 	
 }

@@ -3,14 +3,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>TRMS Form</title>
+<link rel="stylesheet" type="text/css" href="form.css">
 </head>
 <body>
 	<div class="wrap1">
 		<div class="header-top-nav">
 			<ul>
-				<li><a href="homepage1.html">Home</a></li>
-				<li><a href="myReimbursements.html">View Reimbursements</a></li>
-				<li><a href= "ProfileServlet">Profile</a></li>
+				<li><a href="homepage1.html">Return to Home</a></li>
 				<li><a href="logout">Logout</a></li>
 			</ul>
 		</div>
@@ -18,42 +17,44 @@
 	<div>
 		<h1> Tuition Reimbursement Request Form</h1>
 		<div>
-            <form enctype="application/json" method="POST" id="requestForm">
+            <form enctype="application/json" method="POST" id="reimburseForm" action="homepage1.html">
     
-                First Name : <input type="text" id="fName" name="fName" onkeyup="this.value = this.value.toUpperCase();">
+    			<input type="hidden" id="userID" name="userID">
+                First Name : <input type="text" id="fName" name="fName" readonly>
                 <br><br>
-                Last Name : <input type="text" id="lName" name="lName" onkeyup="this.value = this.value.toUpperCase();">
+                Last Name : <input type="text" id="lName" name="lName" readonly>
                 <br><br>
-                Cost : <input type="text" name="tFees" id="tFees" placeholder="Tuition Fees Amount">
+                Event Cost ($): <input type="text" name="cost" id="tFees" placeholder="Event Cost Amount">
                 <br><br>
                 Type of Event : <select name="eType" id="eType">
-                    <option value=0>SELECT</option>
+                    <option value=0>Select</option>
                   </select>
+                <br><br>        
+                Event Date: <input type="datetime-local" name="eventDate" id="eventDate">
                 <br><br>
-                Event Date: <input type="date" name="eDate" id="eDate">
-                Event Time: <input type="time" name="eTime" id="eTime">
-                <br><br>
-                Location : <input type="text" id="location" name="location" onkeyup="this.value = this.value.toUpperCase();">
+                Location : <input type="text" id="eventLocation" name="eventLocation">
                 <br><br>
                 Description: <input type="text" name="desc" id="desc">
                 <br><br>
                 Grading Format : <select name="gFormat" id="gFormat">
-                    <option value=0>SELECT</option>
+                    <option value=0>Select</option>
                   </select>
+                <br><br>
+                Passing Grade: <input type="text" name="passingGrade" id="passingGrade" value="80%/B/Pass">
                 <br><br>
                 Justification : <input type="text"
                                         cols="40" 
                                         rows="5" 
                                         style="width:200px; height:50px;" 
-                                        name="justifi" 
-                                        id="justifi"
+                                        name="justification" 
+                                        id="justification"
                                         value="" >
                 <br><br>
-                Missed Work Time : <input type="text" name="wTime">
+                Missed Work Time (Days): <input type="text" name="daysMissed" id="daysMissed">
                 <br><br>
-                Projected Reimbursement : <input type="text" id="rProjected" name="rProjected" readonly>
+                Reimbursement Amount ($): <input type="text" id="reimbursement" name="reimbursement" readonly>
                 <br><br>
-                <input type="submit" value="Submit Me" id="rFormSubmit">
+                <input type="submit" value="Submit" id="rFormSubmit">
             </form>
         </div>
       

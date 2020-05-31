@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Review Reimbursements</title>
+<style>
+	th, td, p, input, h3 {
+		font:15px 'Segoe UI';
+	}
+	table, th, td {
+		border: solid 1px #ddd;
+		border-collapse: collapse;
+		padding: 2px 3px;
+		text-align: center;
+	}
+	th {
+		font-weight:bold;
+	}
+	.order{
+		font-weight: bold;
+	}
+	#title {
+		font-family: Cambria, Georgia;
+		font-weight: bold;
+	}
+</style>
+</head>
+<body>
+	<div class="wrap1">
+		<div class="header-top-nav">
+			<ul>
+				<li><a href="homepage1.html">Return to Home</a></li>
+				<li><a href="logout">Logout</a></li>
+			</ul>
+		</div>
+	</div>
+	<h2 id="title">Review Reimbursement Requests</h2>
+	<div>
+	<p id='showData'></p>
+    
+    <p id='msg'></p>
+    </div>
+    <div class = "approve">
+		<form action="approve"  method="POST" id="approveRim">
+		<p class="order">Approve a request by submitting the form ID below:</p>
+		<input type="text" name="userName" placeholder="Form ID" required>
+		<input type="submit" value="Submit" id="trmsApprove">
+		</form>
+	</div>
+	    <div class = "reject">
+		<form action="reject"  method="POST" id="rejectRim">
+		<p class="order">Deny a request by submitting the form ID below:</p>
+		<input type="text" name="rejection" placeholder="Form ID" required>
+		<input type="submit" value="Submit" id="trmsReject">
+		</form>
+	</div>
+	<script type="text/javascript" src="reviewreimburse.js"></script>
+</body>
+</html>

@@ -62,4 +62,34 @@
     <servlet-name>GradeServlet</servlet-name>
     <url-pattern>/grade</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FormServlet</display-name>
+    <servlet-name>FormServlet</servlet-name>
+    <servlet-class>com.trms.servlet.FormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormServlet</servlet-name>
+    <url-pattern>/form</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReviewServlet</display-name>
+    <servlet-name>ReviewServlet</servlet-name>
+    <servlet-class>com.trms.servlet.ReviewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReviewServlet</servlet-name>
+    <url-pattern>/review</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyRimServlet</display-name>
+    <servlet-name>MyRimServlet</servlet-name>
+    <servlet-class>com.trms.servlet.MyRimServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyRimServlet</servlet-name>
+    <url-pattern>/myreimburse</url-pattern>
+  </servlet-mapping>
 </web-app>

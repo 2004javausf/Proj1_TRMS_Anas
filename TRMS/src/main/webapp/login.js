@@ -1,37 +1,56 @@
-let emp;
+var user;
+var localStorage;
 
 window.onload=function(){
     console.log("in load");
     
-    document.getElementById("trmsLogin").addEventListener("click",getLogin,false);  
+    this.getLogin();   
+    //document.getElementById("trmsLogin").addEventListener("click",getLogin,false);  
 }
+
 
 function getLogin(){
     console.log("in getLogin");
-    let uName=document.getElementById("username").value;
-    let uPassword=document.getElementById("password").value;
+    
+//    let uName=document.getElementById("username").value;
+//    let uPassword=document.getElementById("password").value;
+    
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         console.log("in ORSC"+xhr.readyState);
         if(xhr.readyState==4 && xhr.status==200){
             console.log(xhr.responseText);
-            emp=JSON.parse(xhr.responseText);
-            console.log(emp);
-            loadLogin(emp,uName,uPassword);
+            user = JSON.parse(xhr.responseText);
+            console.log("in getLogin()");
+            console.log(user);
+            loadLogin(user);
         }
     }
-    xhr.open("POST","http://localhost:8080/TRMS/login",true);
-    var payload=jsonBuilder();
-    xhr.send(payload);
+    xhr.open("GET","http://localhost:8080/TRMS/login",true);
+    xhr.send();
 }
 
-function loadLogin(emp,uName,uPassword){
 
-//    document.getElementById("eID").innerHTML=emp.empID;
-    document.getElementById("fname").innerHTML=emp.firstName;
-    document.getElementById("lname").innerHTML=emp.lastName;
-    document.getElementById("uname").innerHTML=emp.userName;
+function loadLogin(user){
+	
+	var name = user.firstName + " " + user.lastName;
+	var title = user.position;
+	var accBalance = user.accBalance;
+    localStorage.setItem("fullName", name);
+    localStorage.setItem("userID",user.userID);
+    localStorage.setItem("fName",user.firstName);
+    localStorage.setItem("lName",user.lastName);
+    localStorage.setItem("title",user.position);
+    localStorage.setItem("accBalance",user.accBalance);
+    
+    console.log("in loadLogin()");
+    console.log(user);
+    
+    document.getElementById("welcome").innerHTML=("Welcome "+ name);
+    document.getElementById("title").innerHTML=("Position: "+ title);
+    document.getElementById("accBalance").innerHTML=("Balance: $"+ accBalance);
 }
+
 
 function jsonBuilder(){
     var elements=document.getElementById("loginForm").elements;

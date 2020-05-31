@@ -1,59 +1,62 @@
 package com.trms.beans;
 
 import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Form {
-
-	private int formID;            
-    private int empID;
-    private Date subDate;
-    private float cost;            
-    private String status;    
+          
+	private int formID;
+	private int userID;
+    private String fName;
+    private String lName;
+    private double cost; 
+    private double reimbursement;
+  
+    private String eType;
+    private Date eventDate; 
+    private String eventLocation;        
+    private String desc;   
+    private int formLvl;
+    
+    private String gFormat;
+    private String passingGrade;
+    private String finalGrade;
+       
 	private String justification; 
 	private int daysMissed;
-	
-	private boolean urgent;
-	
-	private int eventID;
-    private String eventName;  
-    private Date eventDate;  
-    private String eventLocation;        
-    private String eventDesc;   
-    private int eventPercent;
-    
-    private int gradeFormatID;
-    private String gradeFormatName;
-    private String passingGrade;
+    private String status; 
 	
     
     public Form() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public Form(int formID, int empID, Date subDate, float cost, String status, String justification, int daysMissed,
-			boolean urgent, int eventID, String eventName, Date eventDate, String eventLocation, String eventDesc,
-			int eventPercent, int gradeFormatID, String gradeFormatName, String passingGrade) {
+	
+    
+	public Form(int formID, int userID, String fName, String lName, double cost, double reimbursement, String eType,
+			Date eventDate, String eventLocation, String desc, int formLvl, String gFormat, String passingGrade,
+			String finalGrade, String justification, int daysMissed, String status) {
 		super();
 		this.formID = formID;
-		this.empID = empID;
-		this.subDate = subDate;
+		this.userID = userID;
+		this.fName = fName;
+		this.lName = lName;
 		this.cost = cost;
-		this.status = status;
-		this.justification = justification;
-		this.daysMissed = daysMissed;
-		this.urgent = urgent;
-		this.eventID = eventID;
-		this.eventName = eventName;
+		this.reimbursement = reimbursement;
+		this.eType = eType;
 		this.eventDate = eventDate;
 		this.eventLocation = eventLocation;
-		this.eventDesc = eventDesc;
-		this.eventPercent = eventPercent;
-		this.gradeFormatID = gradeFormatID;
-		this.gradeFormatName = gradeFormatName;
+		this.desc = desc;
+		this.formLvl = formLvl;
+		this.gFormat = gFormat;
 		this.passingGrade = passingGrade;
+		this.finalGrade = finalGrade;
+		this.justification = justification;
+		this.daysMissed = daysMissed;
+		this.status = status;
 	}
+
 
 
 	public int getFormID() {
@@ -66,33 +69,83 @@ public class Form {
 	}
 
 
-	public int getEmpID() {
-		return empID;
+	public String getfName() {
+		return fName;
 	}
 
 
-	public void setEmpID(int empID) {
-		this.empID = empID;
+	public void setfName(String fName) {
+		this.fName = fName;
 	}
 
 
-	public Date getSubDate() {
-		return subDate;
+	public String getlName() {
+		return lName;
 	}
 
 
-	public void setSubDate(Date subDate) {
-		this.subDate = subDate;
+	public void setlName(String lName) {
+		this.lName = lName;
 	}
 
 
-	public float getCost() {
+	public double getCost() {
 		return cost;
 	}
 
 
-	public void setCost(float cost) {
+	public void setCost(double cost) {
 		this.cost = cost;
+	}
+
+
+	public double getReimbursement() {
+		return reimbursement;
+	}
+
+
+	public void setReimbursement(double reimbursement) {
+		this.reimbursement = reimbursement;
+	}
+
+
+	public Date getEventDate() {
+		return eventDate;
+	}
+
+
+	public void setEventDate(Date eventDate) {
+		this.eventDate = eventDate;
+	}
+
+
+	public String getEventLocation() {
+		return eventLocation;
+	}
+
+
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
+	}
+
+
+	public String getDesc() {
+		return desc;
+	}
+
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+
+	public int getFormLvl() {
+		return formLvl;
+	}
+
+
+	public void setFormLvl(int eventPercent) {
+		this.formLvl = eventPercent;
 	}
 
 
@@ -126,93 +179,13 @@ public class Form {
 	}
 
 
-	public boolean isUrgent() {
-		return urgent;
+	public String getgFormat() {
+		return gFormat;
 	}
 
 
-	public void setUrgent(boolean urgent) {
-		this.urgent = urgent;
-	}
-
-
-	public int getEventID() {
-		return eventID;
-	}
-
-
-	public void setEventID(int eventID) {
-		this.eventID = eventID;
-	}
-
-
-	public String getEventName() {
-		return eventName;
-	}
-
-
-	public void setEventName(String eventName) {
-		this.eventName = eventName;
-	}
-
-
-	public Date getEventDate() {
-		return eventDate;
-	}
-
-
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
-	}
-
-
-	public String getEventLocation() {
-		return eventLocation;
-	}
-
-
-	public void setEventLocation(String eventLocation) {
-		this.eventLocation = eventLocation;
-	}
-
-
-	public String getEventDesc() {
-		return eventDesc;
-	}
-
-
-	public void setEventDesc(String eventDesc) {
-		this.eventDesc = eventDesc;
-	}
-
-
-	public int getEventPercent() {
-		return eventPercent;
-	}
-
-
-	public void setEventPercent(int eventPercent) {
-		this.eventPercent = eventPercent;
-	}
-
-
-	public int getGradeFormatID() {
-		return gradeFormatID;
-	}
-
-
-	public void setGradeFormatID(int gradeFormatID) {
-		this.gradeFormatID = gradeFormatID;
-	}
-
-
-	public String getGradeFormatName() {
-		return gradeFormatName;
-	}
-
-
-	public void setGradeFormatName(String gradeFormatName) {
-		this.gradeFormatName = gradeFormatName;
+	public void setgFormat(String gFormat) {
+		this.gFormat = gFormat;
 	}
 
 
@@ -226,14 +199,41 @@ public class Form {
 	}
 
 
+	public String getFinalGrade() {
+		return finalGrade;
+	}
+
+
+	public void setFinalGrade(String finalGrade) {
+		this.finalGrade = finalGrade;
+	}
+
+	public int getUserID() {
+		return userID;
+	}
+
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
+
+
+	public String geteType() {
+		return eType;
+	}
+
+
+	public void seteType(String eType) {
+		this.eType = eType;
+	}
+
 	@Override
 	public String toString() {
-		return "Form [formID=" + formID + ", empID=" + empID + ", subDate=" + subDate + ", cost=" + cost + ", status="
-				+ status + ", justification=" + justification + ", daysMissed=" + daysMissed + ", urgent=" + urgent
-				+ ", eventID=" + eventID + ", eventName=" + eventName + ", eventDate=" + eventDate + ", eventLocation="
-				+ eventLocation + ", eventDesc=" + eventDesc + ", eventPercent=" + eventPercent + ", gradeFormatID="
-				+ gradeFormatID + ", gradeFormatName=" + gradeFormatName + ", passingGrade=" + passingGrade + "]";
+		return "Form [formID=" + formID + ", userID=" + userID + ", eType=" + eType + ", fName=" + fName + ", lName="
+				+ lName + ", cost=" + cost + ", reimbursement=" + reimbursement + ", eventDate=" + eventDate
+				+ ", eventLocation=" + eventLocation + ", desc=" + desc + ", formLvl=" + formLvl + ", gFormat="
+				+ gFormat + ", passingGrade=" + passingGrade + ", finalGrade=" + finalGrade + ", justification="
+				+ justification + ", daysMissed=" + daysMissed + ", status=" + status + "]";
 	}
- 
     
 }
