@@ -1,10 +1,11 @@
 var user;
 var localStorage;
+var title;
 
 window.onload=function(){
     console.log("in load");
     
-    this.getLogin();    
+    this.getLogin();
 }
 
 
@@ -30,7 +31,7 @@ function getLogin(){
 function loadLogin(user){
 	
 	var name = user.firstName + " " + user.lastName;
-	var title = user.position;
+	title = user.position;
 	var accBalance = user.accBalance;
     localStorage.setItem("fullName", name);
     localStorage.setItem("userID",user.userID);
@@ -41,6 +42,8 @@ function loadLogin(user){
     
     console.log("in loadLogin()");
     console.log(user);
+    
+    this.checkTitle(title);
     
     document.getElementById("welcome").innerHTML=("Welcome "+ name);
     document.getElementById("title").innerHTML=("Position: "+ title);
@@ -59,4 +62,19 @@ function jsonBuilder(){
     var json=JSON.stringify(obj);
     console.log(json);
     return json;
+}
+
+
+function checkTitle(title) {
+	
+    var bt = document.getElementById('review'); 
+	
+	if (title == "Employee")
+	{
+		bt.disabled = true;
+	}
+	else{
+		bt.disabled = false;
+	}
+	
 }
