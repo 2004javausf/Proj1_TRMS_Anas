@@ -35,7 +35,8 @@ window.onload=function(){
     this.getET();
     this.getGF();
 
-    document.getElementById("rFormSubmit").addEventListener("click",postForm,false);
+    // document.getElementById("rFormSubmit").addEventListener("click",postForm,false);
+    document.getElementById("eventDate").addEventListener("change",checkDate,false);
     document.getElementById("eType").addEventListener("change",calculateReimburse,false);
     document.getElementById("tFees").addEventListener("change",calculateReimburse,false);
 }
@@ -137,4 +138,33 @@ function postForm(){
     xhr.open("POST","http://localhost:8080/TRMS/form",true);
     var payload=jsonBuilder()
     xhr.send(payload);
+}
+
+
+function checkDate() {
+	
+    var bt = document.getElementById('rFormSubmit'); 
+    var d = document.getElementById("eventDate").value
+	 // To set two dates to two variables 
+    var date1 = new Date();  //Today's Date
+	var date2 = new Date(d); //Event Date
+	  
+	// Calculate the time difference in milliseconds
+	var DiffInTime = date2.getTime() - date1.getTime(); 
+	  
+	// Convert into days 
+	var DiffInDays = DiffInTime / (1000 * 3600 * 24); 
+	
+	console.log(d);
+	console.log(DiffInTime);
+	console.log(DiffInDays);
+	
+	if (DiffInDays < 7)
+	{
+		bt.disabled = true;
+	}
+	else{
+		bt.disabled = false;
+	}
+	
 }
